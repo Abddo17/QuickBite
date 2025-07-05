@@ -1,0 +1,443 @@
+name: 'Product Management'
+description: ''
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/products
+    metadata:
+      groupName: 'Product Management'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'List all products'
+      description: 'Retrieves a paginated list of products with optional filtering by category, price, type, or search term, and sorting by various fields.'
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      per_page:
+        name: per_page
+        description: 'Optional. Number of products per page (1-100).'
+        required: false
+        example: 50
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      page:
+        name: page
+        description: 'Optional. Page number for pagination.'
+        required: false
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      sort_by:
+        name: sort_by
+        description: 'Optional. Field to sort by (nom, prix, stock, created_at, updated_at).'
+        required: false
+        example: prix
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      sort_dir:
+        name: sort_dir
+        description: 'Optional. Sort direction (asc, desc).'
+        required: false
+        example: asc
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      category_id:
+        name: category_id
+        description: 'Optional. Filter by category ID.'
+        required: false
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      search:
+        name: search
+        description: 'Optional. Search by product name or description.'
+        required: false
+        example: laptop
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      min_price:
+        name: min_price
+        description: 'numeric Optional. Minimum price filter.'
+        required: false
+        example: '100'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      max_price:
+        name: max_price
+        description: 'numeric Optional. Maximum price filter.'
+        required: false
+        example: '1000'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      type:
+        name: type
+        description: 'Optional. Filter by product type.'
+        required: false
+        example: electronics
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+    cleanQueryParameters:
+      per_page: 50
+      page: 1
+      sort_by: prix
+      sort_dir: asc
+      category_id: 1
+      search: laptop
+      min_price: '100'
+      max_price: '1000'
+      type: electronics
+    bodyParameters:
+      per_page:
+        name: per_page
+        description: 'Must be at least 1. Must not be greater than 100.'
+        required: false
+        example: 21
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      page:
+        name: page
+        description: 'Must be at least 1.'
+        required: false
+        example: 45
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      sort_by:
+        name: sort_by
+        description: ''
+        required: false
+        example: stock
+        type: string
+        enumValues:
+          - nom
+          - prix
+          - stock
+          - created_at
+          - updated_at
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      sort_dir:
+        name: sort_dir
+        description: ''
+        required: false
+        example: desc
+        type: string
+        enumValues:
+          - asc
+          - desc
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      category_id:
+        name: category_id
+        description: 'The <code>categoryId</code> of an existing record in the categories table.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      search:
+        name: search
+        description: 'Must not be greater than 255 characters.'
+        required: false
+        example: qeopfuudtdsufvyvddqam
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      min_price:
+        name: min_price
+        description: 'Must be at least 0.'
+        required: false
+        example: 46
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      max_price:
+        name: max_price
+        description: 'Must be at least 0.'
+        required: false
+        example: 28
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      type:
+        name: type
+        description: 'Must not be greater than 255 characters.'
+        required: false
+        example: ihfqcoynlazghdtqtqxba
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      per_page: 21
+      page: 45
+      sort_by: stock
+      sort_dir: desc
+      search: qeopfuudtdsufvyvddqam
+      min_price: 46
+      max_price: 28
+      type: ihfqcoynlazghdtqtqxba
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            "data": [
+              {
+                "id": 1,
+                "nom": "Laptop",
+                "description": "High-performance laptop",
+                "prix": 999.99,
+                "stock": 10,
+                "categoryId": 1,
+                "type": "electronics",
+                "size": null,
+                "imageUrl": "http://your-app-url/storage/products/laptop.jpg",
+                "category": {
+                  "categoryId": 1,
+                  "name": "Electronics"
+                }
+              }
+            ],
+            "meta": {
+              "current_page": 1,
+              "per_page": 50,
+              "total": 100,
+              "last_page": 2,
+              "sort_by": "created_at",
+              "sort_dir": "desc",
+              "filters": {
+                "category_id": 1,
+                "search": "laptop",
+                "min_price": 100,
+                "max_price": 1000,
+                "type": "electronics"
+              }
+            },
+            "links": {
+              "first": "http://your-app-url/api/products?page=1",
+              "last": "http://your-app-url/api/products?page=2",
+              "prev": null,
+              "next": "http://your-app-url/api/products?page=2"
+            }
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 422
+        content: |-
+          {
+            "errors": {
+              "per_page": ["The per_page must be an integer."]
+            }
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/products/{product}'
+    metadata:
+      groupName: 'Product Management'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get a specific product'
+      description: 'Retrieves the details of a product by its ID, including its category.'
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      product:
+        name: product
+        description: 'The product.'
+        required: true
+        example: consequatur
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      product: consequatur
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            "id": 1,
+            "nom": "Laptop",
+            "description": "High-performance laptop",
+            "prix": 999.99,
+            "stock": 10,
+            "categoryId": 1,
+            "type": "electronics",
+            "size": "medium",
+            "imageUrl": "http://your-app-url/storage/products/laptop.jpg",
+            "category": {
+              "categoryId": 1,
+              "name": "Electronics"
+            }
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 404
+        content: |-
+          {
+            "message": "Not found."
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/products/{id}'
+    metadata:
+      groupName: 'Product Management'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Delete a product'
+      description: 'Removes a product from the database by its ID. Only accessible to authorized users (admins).'
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer Bearer {YOUR_AUTH_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the product.'
+        required: true
+        example: consequatur
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: consequatur
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 204
+        content: '{}'
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 401
+        content: |-
+          {
+            "message": "Unauthenticated."
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 403
+        content: |-
+          {
+            "message": "Unauthorized."
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 404
+        content: |-
+          {
+            "message": "Not found."
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 3V5EgbkvZcDPa166h8fd4ae'
+    controller: null
+    method: null
+    route: null
+    custom: []

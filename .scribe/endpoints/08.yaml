@@ -1,0 +1,62 @@
+name: 'Gestion des Paiements'
+description: ''
+endpoints:
+  -
+    httpMethods:
+      - POST
+    uri: api/stripe/pay
+    metadata:
+      groupName: 'Gestion des Paiements'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Créer un paiement via Stripe'
+      description: 'Crée un PaymentIntent Stripe pour traiter un paiement en USD. Retourne le client_secret pour confirmer le paiement côté client.'
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      amount:
+        name: amount
+        description: 'Le montant du paiement en cents (USD).'
+        required: true
+        example: 149999
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      amount: 149999
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            "clientSecret": "pi_3N5X9Z2eZvKYlo2I0A_secret_XYZ123"
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 400
+        content: |-
+          {
+            "error": "Invalid amount provided"
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []

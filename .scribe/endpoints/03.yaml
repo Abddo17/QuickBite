@@ -1,0 +1,384 @@
+name: 'Gestion du Panier'
+description: ''
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/panier
+    metadata:
+      groupName: 'Gestion du Panier'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Lister tous les articles du panier'
+      description: "Récupère la liste de tous les articles dans le panier de l'utilisateur authentifié, avec les détails des produits associés."
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer Bearer {YOUR_AUTH_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          [
+            {
+              "id": 1,
+              "userId": 1,
+              "produitId": 1,
+              "quantite": 2,
+              "created_at": "2025-05-19T18:10:00+01:00",
+              "updated_at": "2025-05-19T18:10:00+01:00",
+              "product": {
+                "produitId": 1,
+                "nom": "Laptop",
+                "prix": 749.99,
+                "stock": 10
+              }
+            }
+          ]
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 401
+        content: |-
+          {
+            "message": "Unauthenticated."
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 3V5EgbkvZcDPa166h8fd4ae'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/panier
+    metadata:
+      groupName: 'Gestion du Panier'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Ajouter un article au panier'
+      description: "Ajoute un nouvel article au panier de l'utilisateur authentifié, en vérifiant la disponibilité du stock."
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer Bearer {YOUR_AUTH_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      produitId:
+        name: produitId
+        description: "L'ID du produit à ajouter."
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      quantite:
+        name: quantite
+        description: 'La quantité du produit (minimum 1).'
+        required: true
+        example: 2
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      produitId: 1
+      quantite: 2
+    fileParameters: []
+    responses:
+      -
+        status: 201
+        content: |-
+          {
+            "id": 1,
+            "userId": 1,
+            "produitId": 1,
+            "quantite": 2,
+            "created_at": "2025-05-19T18:10:00+01:00",
+            "updated_at": "2025-05-19T18:10:00+01:00",
+            "product": {
+              "produitId": 1,
+              "nom": "Laptop",
+              "prix": 749.99,
+              "stock": 10
+            }
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 400
+        content: |-
+          {
+            "message": "Not enough stock"
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 401
+        content: |-
+          {
+            "message": "Unauthenticated."
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 404
+        content: |-
+          {
+            "message": "Not found."
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 422
+        content: |-
+          {
+            "errors": {
+              "produitId": ["The selected produit id is invalid."]
+            }
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 3V5EgbkvZcDPa166h8fd4ae'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+      - PATCH
+    uri: 'api/panier/{panierId}'
+    metadata:
+      groupName: 'Gestion du Panier'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Mettre à jour un article du panier'
+      description: "Met à jour la quantité d'un article existant dans le panier. Accessible uniquement au propriétaire du panier."
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer Bearer {YOUR_AUTH_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      panierId:
+        name: panierId
+        description: ''
+        required: true
+        example: 27
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      panierId: 27
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      quantite:
+        name: quantite
+        description: 'La nouvelle quantité du produit (minimum 1).'
+        required: true
+        example: 3
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      quantite: 3
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            "id": 1,
+            "userId": 1,
+            "produitId": 1,
+            "quantite": 3,
+            "created_at": "2025-05-19T18:10:00+01:00",
+            "updated_at": "2025-05-19T18:11:00+01:00",
+            "product": {
+              "produitId": 1,
+              "nom": "Laptop",
+              "prix": 749.99,
+              "stock": 10
+            }
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 400
+        content: |-
+          {
+            "message": "Not enough stock"
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 401
+        content: |-
+          {
+            "message": "Unauthenticated."
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 403
+        content: |-
+          {
+            "message": "Unauthorized."
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 404
+        content: |-
+          {
+            "message": "Not found."
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 422
+        content: |-
+          {
+            "errors": {
+              "quantite": ["The quantite must be an integer."]
+            }
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 3V5EgbkvZcDPa166h8fd4ae'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/panier/{panierId}'
+    metadata:
+      groupName: 'Gestion du Panier'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Supprimer un article du panier'
+      description: 'Supprime un article du panier. Accessible uniquement au propriétaire du panier.'
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer Bearer {YOUR_AUTH_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      panierId:
+        name: panierId
+        description: ''
+        required: true
+        example: 27
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      panierId: 27
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 204
+        content: '{}'
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 401
+        content: |-
+          {
+            "message": "Unauthenticated."
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 403
+        content: |-
+          {
+            "message": "Unauthorized."
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 404
+        content: |-
+          {
+            "message": "Not found."
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 3V5EgbkvZcDPa166h8fd4ae'
+    controller: null
+    method: null
+    route: null
+    custom: []
