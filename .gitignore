@@ -7,7 +7,7 @@ BackEnd/node_modules/
 /vendor
 BackEnd/vendor/
 BackEnd/.env
-BackEnd/storage/
+
 
 # Build output
 dist/
