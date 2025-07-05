@@ -1,0 +1,19 @@
+# Node.js
+node_modules/
+FrontEnd/node_modules/
+BackEnd/node_modules/
+
+# Laravel
+/vendor
+BackEnd/vendor/
+BackEnd/.env
+BackEnd/storage/
+
+# Build output
+dist/
+build/
+
+# General
+*.log
+.env
+.DS_Store
